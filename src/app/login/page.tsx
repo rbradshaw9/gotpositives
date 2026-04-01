@@ -61,8 +61,28 @@ function LoginContent() {
             </p>
           </div>
 
+          {/* Preview mode badge */}
+          {process.env.NEXT_PUBLIC_BYPASS_AUTH === 'true' && (
+            <div style={{
+              background: 'rgba(124, 158, 138, 0.1)',
+              border: '1px solid rgba(124, 158, 138, 0.35)',
+              borderRadius: '10px',
+              padding: '0.75rem 1rem',
+              fontSize: '0.8125rem',
+              color: 'var(--brand-teal)',
+              marginBottom: '1.25rem',
+              textAlign: 'center',
+              lineHeight: 1.6,
+            }}>
+              <strong>Preview mode</strong><br />
+              Email: <code>test@positives.com</code><br />
+              Password: <code>preview123</code>
+            </div>
+          )}
+
           {/* Error banner */}
           {errorMsg && (
+
             <div style={{
               background: 'rgba(196, 89, 92, 0.1)',
               border: '1px solid rgba(196, 89, 92, 0.3)',
