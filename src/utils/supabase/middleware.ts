@@ -6,9 +6,10 @@ export async function updateSession(request: NextRequest) {
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   const pathname = request.nextUrl.pathname
 
-  // ── DEMO / LOCAL MODE ─────────────────────────────────────────────────────
-  // When Supabase is not yet connected, skip all auth gating.
-  if (!supabaseUrl || !supabaseKey) {
+  // ── BYPASS / PREVIEW MODE ─────────────────────────────────────────────────
+  // Skip all auth gating when NEXT_PUBLIC_BYPASS_AUTH=true (preview deployments)
+  // or when Supabase is not yet connected.
+  if (process.env.NEXT_PUBLIC_BYPASS_AUTH === 'true' || !supabaseUrl || !supabaseKey) {
     return NextResponse.next({ request })
   }
 

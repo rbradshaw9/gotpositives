@@ -5,8 +5,9 @@ import Link from 'next/link'
 import { login } from './actions'
 import { motion } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
-export default function LoginPage() {
+function LoginContent() {
   const searchParams = useSearchParams()
   const errorMsg = searchParams.get('error')
     ? decodeURIComponent(searchParams.get('error')!)
@@ -159,5 +160,13 @@ export default function LoginPage() {
         </motion.div>
       </main>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginContent />
+    </Suspense>
   )
 }

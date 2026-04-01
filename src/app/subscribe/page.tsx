@@ -5,6 +5,7 @@ import '@/app/globals.css'
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,7 +30,7 @@ const BENEFITS = [
   'Cancel anytime — no lock-in',
 ]
 
-export default function SubscribePage() {
+function SubscribeContent() {
   const searchParams = useSearchParams()
   const reason = searchParams.get('reason')
   const preferredPlan = searchParams.get('plan') ?? 'monthly'
@@ -187,5 +188,13 @@ export default function SubscribePage() {
         </motion.div>
       </motion.main>
     </div>
+  )
+}
+
+export default function SubscribePage() {
+  return (
+    <Suspense>
+      <SubscribeContent />
+    </Suspense>
   )
 }

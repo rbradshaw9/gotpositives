@@ -41,7 +41,9 @@ export default async function MembersLayout({
 
   return (
     <div className="app-shell">
-      <MembersNav />
+      <Suspense>
+        <MembersNav />
+      </Suspense>
 
       {isDemoMode && (
         <div style={{
